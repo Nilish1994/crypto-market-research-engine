@@ -1,0 +1,23 @@
+# Research engine: one cycle (public Binance market data, levels, visits, reports). No orders, no API keys.
+# Installed to /etc/systemd/system/ and started by market-data-watch.timer.
+# Runs a pinned copy of the code (git worktree at a fixed commit), so edits or branch switches in the
+# main checkout never change what runs. Writes only to the shared data directory.
+[Unit]
+Description=Market-data research engine cycle (public data only, no orders)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/srv/projects/market-data-engine
+Environment=MARKET_DATA_DB=/srv/projects/trading-bot/data/market_data.db
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=GIT_OPTIONAL_LOCKS=0
+ExecStart=/usr/bin/python3 -m market_data watch
+Nice=10
+TimeoutStartSec=30min
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/srv/projects/trading-bot/data

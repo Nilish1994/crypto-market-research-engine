@@ -1,0 +1,13 @@
+# Runs the research engine 20 seconds after every 5-minute candle closes.
+# Stop:   systemctl disable --now market-data-watch.timer
+# Status: systemctl list-timers market-data-watch.timer; journalctl -u market-data-watch.service -n 50
+[Unit]
+Description=Run the market-data research engine every 5 minutes
+
+[Timer]
+OnCalendar=*:0/5:20
+Persistent=true
+Unit=market-data-watch.service
+
+[Install]
+WantedBy=timers.target
