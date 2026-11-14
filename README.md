@@ -1,6 +1,7 @@
 # Crypto market research engine
 
 [![tests](https://github.com/Nilish1994/crypto-market-research-engine/actions/workflows/tests.yml/badge.svg)](https://github.com/Nilish1994/crypto-market-research-engine/actions/workflows/tests.yml)
+[![DOI](https://zenodo.org/badge/1457477888.svg)](https://doi.org/10.5281/zenodo.24214968)
 
 A Python research engine that records Binance USD-M Futures market data and tests whether simple
 trading signals and support/resistance levels actually beat chance. It never places orders: it uses
