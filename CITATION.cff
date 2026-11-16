@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 type: software
 title: "Crypto market research engine"
-abstract: "Python research engine for Binance USD-M Futures: market-data recorder, TradingView-matching indicators, support/resistance levels, level-visit outcomes and fair signal tests. Public market data only; it places no orders."
+abstract: "Python research engine for Binance USD-M Futures: market-data recorder, TradingView-matching indicators, support/resistance levels, level-visit outcomes, fair signal tests and pre-registered forward tests of frozen rules. Public market data only; it places no orders."
 authors:
   - family-names: Aluthwatta
     given-names: Nilish
@@ -10,8 +10,8 @@ authors:
 repository-code: "https://github.com/Nilish1994/crypto-market-research-engine"
 license: MIT
 doi: 10.5281/zenodo.24214968
-version: 1.0.0
-date-released: 2026-11-14
+version: 1.1.0
+date-released: 2026-11-16
 keywords:
   - python
   - market data

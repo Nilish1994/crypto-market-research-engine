@@ -80,7 +80,7 @@ start-time cut, void rules, the 300/600 gates and the clustered test). They run 
 
 ## Changes
 
-- **Unreleased:** the forward test of frozen rule s1h12 (`market_data/forward_rule.py`,
+- **1.1.0 (2026-11-16):** the pre-registered forward test of frozen rule s1h12 (`market_data/forward_rule.py`,
   `market_data/forward_report.py`, its section in the weekly scorecard, 70 new tests,
   `docs/frozen-rule-s1h12.md`).
 - **1.0.0 (2026-11-14):** first public release.

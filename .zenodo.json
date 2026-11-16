@@ -1,7 +1,7 @@
 {
   "title": "Crypto market research engine",
   "upload_type": "software",
-  "description": "Python research engine for Binance USD-M Futures. It records market data, computes TradingView-matching indicators, detects support/resistance levels, logs every level visit and its outcome, and tests trading signals against random entries in the same trend. Public market data only; it places no orders.",
+  "description": "Python research engine for Binance USD-M Futures. It records market data, computes TradingView-matching indicators, detects support/resistance levels, logs every level visit and its outcome, tests trading signals against random entries in the same trend, and runs pre-registered forward tests of frozen rules (s1h12: the Strategy-1 EMA retest on 1h candles, counted from 2026-11-23). Public market data only; it places no orders.",
   "creators": [
     {
       "name": "Aluthwatta, Nilish",
@@ -9,5 +9,15 @@
     }
   ],
   "license": "MIT",
-  "keywords": ["python", "market data", "backtesting", "binance", "support and resistance", "quantitative finance"]
+  "keywords": [
+    "python",
+    "market data",
+    "backtesting",
+    "binance",
+    "support and resistance",
+    "quantitative finance",
+    "pre-registration",
+    "forward test"
+  ],
+  "version": "1.1.0"
 }
