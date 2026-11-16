@@ -24,6 +24,12 @@ every 5 minutes.
   and compares them with random entries in the same trend, with a significance estimate.
 - **Writes reports:** daily summaries and a weekly scorecard that keeps forward (live) evidence
   separate from history computed after the fact.
+- **Runs pre-registered forward tests of frozen rules.** A rule is written down in full before any data that
+  counts exists, then scored only on candles that arrive afterwards, with one test fixed in advance:
+  - **v1b**: a level rule
+  - **s1h12**: the Strategy-1 EMA retest on 1h candles, BTC+ETH+SOL pooled, 12-hour exit, counting from
+    2026-11-23 00:00 UTC. See [`docs/frozen-rule-s1h12.md`](docs/frozen-rule-s1h12.md).
+
 
 ## Design choices
 
@@ -59,8 +65,9 @@ pip install -r requirements-dev.txt
 pytest
 ```
 
-81 tests cover indicators, signal rules, level detection, visit classification, funding paging,
-the fair test, report generation and locking. They run in CI on every push.
+151 tests cover indicators, signal rules, level detection, visit classification, funding paging,
+the fair test, report generation, locking and the s1h12 forward test (signals, time exit, funding, the
+start-time cut, void rules, the 300/600 gates and the clustered test). They run in CI on every push.
 
 ## Layout
 
@@ -69,6 +76,14 @@ the fair test, report generation and locking. They run in CI on every push.
 | `market_data/` | The engine: Binance client, indicators, levels, pipeline, store, reports, CLI |
 | `tests/` | pytest suite |
 | `deploy/` | systemd service and timer for running a cycle every 5 minutes |
+| `docs/` | Pre-registration of the frozen rule s1h12 |
+
+## Changes
+
+- **Unreleased:** the forward test of frozen rule s1h12 (`market_data/forward_rule.py`,
+  `market_data/forward_report.py`, its section in the weekly scorecard, 70 new tests,
+  `docs/frozen-rule-s1h12.md`).
+- **1.0.0 (2026-11-14):** first public release.
 
 ## Disclaimer
 

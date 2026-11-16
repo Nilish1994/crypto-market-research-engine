@@ -15,7 +15,7 @@ import random
 import statistics
 from datetime import datetime, timedelta, timezone
 
-from market_data import levels, pipeline, settings
+from market_data import forward_report, levels, pipeline, settings
 from market_data.indicators import trend
 
 DAY_MS = levels.DAY_MS
@@ -375,6 +375,8 @@ def weekly_report(conn, week_start, symbols=None) -> str:
     for i, rule in enumerate(settings.FROZEN_RULES):
         if rule['frozen_ms'] < week_end:
             out += _rule_section(conn, rule, week_end, seed=3 + i)
+    for rule in settings.FROZEN_SIGNAL_RULES:          # no section until the rule has a start time
+        out += forward_report.section(conn, rule, week_end)
     out += _scorecard(conn, start, week_end, f"Forward evidence (since {fmt(start)} UTC) — the test that counts", seed=1,
                       forward=True)
     out += _scorecard(conn, settings.HISTORY_START_MS, min(start, week_end),

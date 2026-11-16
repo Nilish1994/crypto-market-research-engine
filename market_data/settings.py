@@ -61,3 +61,25 @@ FROZEN_RULES = (
      'support_rsi_below': 30, 'resistance_rsi_above': 70,  # strict: RSI exactly 30 or 70 does not qualify
      'min_visits': 100},
 )
+
+# Pre-registered signal rules: fixed-rule trades on Strategy-1 signals, tested ONCE on a fixed number of trades
+# (market_data/forward_rule.py; frozen text in docs/architecture/evidence/RESEARCH-ENGINE-001/frozen-rule-s1h12.md).
+# Same convention as FROZEN_RULES: never edited after the start. Any change to the rule, its costs or the code it
+# pins is a new rule with a new name, and its count starts again.
+# frozen_ms None = not started: nothing is counted and the weekly scorecard has no section for the rule.
+FROZEN_SIGNAL_RULES = (
+    {'name': 's1h12',
+     'frozen_ms': 1795392000000,                     # Monday 2026-11-23 00:00 UTC
+     'symbols': ('BTCUSDT', 'ETHUSDT', 'SOLUSDT'),   # pooled into one sample
+     'timeframe': '1h',
+     'long_signals': ('LR50', 'LR200'), 'short_signals': ('SR50', 'SR200'),
+     'zone_pct': 0.0015, 'ema_fast': 50, 'ema_slow': 200,   # must equal RETEST_ZONE_PCT, EMA_FAST, EMA_SLOW
+     'hold': 12,                                     # exit at the close of the 12th candle after the signal candle
+     'cost_bps': 14,                                 # round trip: 5 bps taker fee + 2 bps slippage per side; funding is added per trade
+     'futility_trades': 300,                         # dead if the first 300 trades average <= 0
+     'target_trades': 600,                           # the single test is on the first 600 trades
+     'cap_months': 24,                               # or on the trades that exited within 24 months of the start
+     'alpha': 0.05,                                  # one-sided
+     'max_missing_share': 0.02,                      # void above 2% missing 1h candles
+     'code_sha256': 'f81dfff61586c8622c6a3323bec47f296a95a8ef222019bbab7f068c8d81b45e'},
+)
